@@ -34,6 +34,8 @@ Nodo Master:
 docker run -d --name=condormaster dscnaf/htcondor-centos -m
 ```
 
+Submitter:
+
 ```bash
 docker run -d --name=condorsubmit dscnaf/htcondor-centos -s <MASTER_IP>
 ```

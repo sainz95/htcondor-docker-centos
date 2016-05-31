@@ -21,6 +21,7 @@ RUN set -ex \
 COPY supervisord.conf /etc/supervisord.conf
 COPY condor.ini /etc/supervisord.d/condor.ini
 COPY condor-wrapper.sh /usr/local/sbin/condor-wrapper.sh
-COPY master/condor_config /etc/condor/condor_config
+COPY condor_config /etc/condor/condor_config
+COPY run.sh /usr/local/sbin/run.sh
 
-ENTRYPOINT ["/sbin/tini", "--", "/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/sbin/run.sh"]

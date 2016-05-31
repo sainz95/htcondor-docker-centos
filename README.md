@@ -96,6 +96,7 @@ slot4@executor     LINUX      X86_64 Unclaimed Idle      0.000 1965  0+00:00:37
 >
 > queue 100
 > EOF
+[dmr@submitter ~]$ for i in $(seq 0 99); do mkdir run$i; done
 [dmr@submitter ~]$ condor_submit sleep.sub
 Submitting job(s)....................................................................................................
 100 job(s) submitted to cluster 2.

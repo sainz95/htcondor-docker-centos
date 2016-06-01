@@ -60,7 +60,7 @@ Test applicativo
 ```
 $ docker network create htcondor
 fc246793d37dfe811203ba2ac55f3e18ebede1a559b57fe1a15d882315e59c14
-$ docker run -d --name executor -h executor --net htcondor dscnaf/htcondor-centos -e master
+$ docker run -d --name master -h master --net htcondor dscnaf/htcondor-centos -m
 6d7a9264079d41725f38be3e704a7d3d6b274ce99f2aa60c511b84b7c982665d
 $ docker run -d --name submitter -h submitter --net htcondor dscnaf/htcondor-centos -s master
 79ff820c0024213ec04fce49afeced569583e64f82d3576108573aeb0a2ffe6e

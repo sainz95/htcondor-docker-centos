@@ -1,70 +1,64 @@
 Container Docker per HTCondor
 =============================
 
-Immagine Docker HTCondor multi-role. L'immagine di base utilizzata è CentOS 7
-e si fa riferimento alla versione stable di condor
+HTCondor container with roles (Master, submitter, executor)
+
 (https://research.cs.wisc.edu/htcondor/yum/).
 
-Per controllare e gestire i diversi processi lanciati nei singoli container,
-si utilizza supervisord.
+Supervisord is used to monitor and manage processes launched in individual containers
 
 
-Architettura di riferimento
----------------------------
 
-![Architettura HTCondor](architecture.png)
-
-
-Come utilizzare i Dockerfile
+How to use Dockerfile
 ----------------------------
 
 
-### Build dell'immagine
+### Build docker image
 
 ```bash
-docker build --tag dscnaf/htcondor-centos .
+docker build --tag sainz95/htcondor-centos .
 ```
 
 
-### Run dei nodi
+### Running nodes
 
-Nodo Master:
+Master:
 
 ```bash
-docker run -d --name=condormaster dscnaf/htcondor-centos -m
+docker run -d --name=condormaster sainz95/htcondor-centos -m
 ```
 
 Submitter:
 
 ```bash
-docker run -d --name=condorsubmit dscnaf/htcondor-centos -s <MASTER_IP>
+docker run -d --name=condorsubmit sainz95/htcondor-centos -s MASTER_IP
 ```
 
 Lanciare un numero di nodi executor a piacere:
 
 ```bash
-docker run -d --name=condorexecute dscnaf/htcondor-centos -e <MASTER_IP>
+docker run -d --name=condorexecute sainz95/htcondor-centos -e MASTER_IP
 ```
 
 
 ### LOGS
 
 ```bash
-docker logs <nome_container>
+docker logs NAME_OF_CONTAINER
 ```
 
 
-Test applicativo
+Test
 ----------------
 
 ```
 $ docker network create htcondor
 fc246793d37dfe811203ba2ac55f3e18ebede1a559b57fe1a15d882315e59c14
-$ docker run -d --name executor -h executor --net htcondor dscnaf/htcondor-centos -e master
+$ docker run -d --name executor -h executor --net htcondor sainz/htcondor-centos -e master
 6d7a9264079d41725f38be3e704a7d3d6b274ce99f2aa60c511b84b7c982665d
-$ docker run -d --name submitter -h submitter --net htcondor dscnaf/htcondor-centos -s master
+$ docker run -d --name submitter -h submitter --net htcondor sainz95/htcondor-centos -s master
 79ff820c0024213ec04fce49afeced569583e64f82d3576108573aeb0a2ffe6e
-$ docker run -d --name executor -h executor --net htcondor dscnaf/htcondor-centos -e master
+$ docker run -d --name executor -h executor --net htcondor sainz95/htcondor-centos -e master
 668873d68716bb06361b0b95f01d80117f03748c11147c48e6e0bf41201bad69
 $ docker exec -it submitter /bin/bash -l
 [root@submitter ~]# condor_status
@@ -150,10 +144,3 @@ Done
            Memory (MB)          :        3        1      1965
 ...
 ```
-
-
-TBD
----
-
-* Gestione della sicurezza
-* Sistemare i log

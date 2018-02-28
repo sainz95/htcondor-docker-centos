@@ -34,7 +34,7 @@ Submitter:
 docker run -d --name=condorsubmit sainz95/htcondor-centos -s MASTER_IP
 ```
 
-Lanciare un numero di nodi executor a piacere:
+Launch any number of execute nodes
 
 ```bash
 docker run -d --name=condorexecute sainz95/htcondor-centos -e MASTER_IP

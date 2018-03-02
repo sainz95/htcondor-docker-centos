@@ -7,6 +7,7 @@ ENV TINI_VERSION v0.9.0
 COPY htcondor-stable-rhel7.repo /etc/yum.repos.d/
 
 RUN set -ex \
+	&& yum install ffmpeg -y \
         && mkdir -p /var/run/lock \
         && yum makecache fast \
         && yum --disablerepo=htcondor-stable -y install wget epel-release \

@@ -13,10 +13,10 @@ How to use Dockerfile
 ----------------------------
 
 
-### Build docker image
+### Build docker image (while in the directory)
 
 ```bash
-docker build --tag sainz95/htcondor-centos .
+docker build .
 ```
 
 
@@ -25,19 +25,19 @@ docker build --tag sainz95/htcondor-centos .
 Master:
 
 ```bash
-docker run -d --name=condormaster sainz95/htcondor-centos -m
+docker run -d --name=condormaster IMAGE_NAME_HERE -m
 ```
 
 Submitter:
 
 ```bash
-docker run -d --name=condorsubmit sainz95/htcondor-centos -s MASTER_IP
+docker run -d --name=condorsubmit IMAGE_NAME_HERE -s MASTER_IP
 ```
 
 Launch any number of execute nodes
 
 ```bash
-docker run -d --name=condorexecute sainz95/htcondor-centos -e MASTER_IP
+docker run -d --name=condorexecute IMAGE_NAME_HERE -e MASTER_IP
 ```
 
 

@@ -25,13 +25,13 @@ docker build .
 Master:
 
 ```bash
-docker run -d --name=condormaster IMAGE_NAME_HERE -m
+docker run -d --name=condormaster -p 9618:9618 IMAGE_NAME_HERE -m
 ```
 
 Submitter:
 
 ```bash
-docker run -d --name=condorsubmit IMAGE_NAME_HERE -s MASTER_IP
+docker run -d -v LOCAL_DIRECTORY:CONTAINER_DIRECTORY --name=condorsubmit IMAGE_NAME_HERE -s MASTER_IP
 ```
 
 Launch any number of execute nodes

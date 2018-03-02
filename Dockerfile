@@ -7,7 +7,11 @@ ENV TINI_VERSION v0.9.0
 COPY htcondor-stable-rhel7.repo /etc/yum.repos.d/
 
 RUN set -ex \
-	&& yum install ffmpeg -y \
+	&& yum install epel-release -y \
+	&& yum update -y \
+	&& rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro \
+	&& rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm \
+	&& yum install ffmpeg ffmpeg-devel -y \
         && mkdir -p /var/run/lock \
         && yum makecache fast \
         && yum --disablerepo=htcondor-stable -y install wget epel-release \

@@ -1,6 +1,6 @@
 # vim: ft=Dockerfile :
 
-FROM centos:7
+FROM centos:latest
 MAINTAINER Matteo Panella <matteo.panella@cnaf.infn.it>
 ENV TINI_VERSION v0.9.0
 

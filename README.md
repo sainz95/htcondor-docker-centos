@@ -46,7 +46,25 @@ docker run -d --name=condorexecute IMAGE_NAME_HERE -e MASTER_IP
 ```bash
 docker logs NAME_OF_CONTAINER
 ```
+### Run Shell Scripts
+Step 2 and 3 just copy and paste, no need to change directories.
 
+1)Get into container:
+
+```bash
+docker exec -it NAME_OF_CONTAINER bash
+```
+2)Creates user dmr while in root of cent os:
+
+```bash
+find . -type f -name "createuser.sh" -exec bash {} \;
+```
+
+2)Runs htcondor commands from dmr:
+
+```bash
+find . -type f -name "capstonesubmit.sh" -exec bash {} \;
+```
 
 Test
 ----------------

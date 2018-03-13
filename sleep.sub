@@ -1,4 +1,4 @@
-x submit description file
+#Unix submit description file
 # sleep.sub -- simple sleep job
 
 executable              = sleep.sh
